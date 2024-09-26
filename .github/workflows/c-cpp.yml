@@ -10,14 +10,20 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v4
-    - name: build
+
+    - name: Build
       run: python build.py
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4.4.0
       with:
         name: flip_fluids_addon.zip
-        path: /home/runner/work/Blender-FLIP-Fluids/Blender-FLIP-Fluids/build/bl_flip_fluids/flip_fluids_addon
+        path: ${{ github.workspace }}/build/bl_flip_fluids/flip_fluids_addon.zip
