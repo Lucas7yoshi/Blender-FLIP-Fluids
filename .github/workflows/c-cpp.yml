@@ -16,3 +16,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: build
       run: python build.py
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4.4.0
+      with:
+        name: flip_fluids_addon.zip
+        path: /home/runner/work/Blender-FLIP-Fluids/Blender-FLIP-Fluids/build/bl_flip_fluids/flip_fluids_addon
